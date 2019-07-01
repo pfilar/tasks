@@ -1,6 +1,10 @@
 package com.crud.tasks.domain;
 
+import lombok.*;
+
 //@Data
+//@Setter
+//@Getter
 //@AllArgsConstructor
 //@NoArgsConstructor
 public class TaskDto {
@@ -9,11 +13,6 @@ public class TaskDto {
     private String content;
 
     public TaskDto() {
-    }
-
-    public TaskDto(String title, String content) {
-        this.title = title;
-        this.content = content;
     }
 
     public TaskDto(Long id, String title, String content) {

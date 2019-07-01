@@ -17,7 +17,7 @@ public class TaskController {
     private static final Logger LOGGER = Logger.getLogger(TaskController.class.getName());
 
     //    private TaskMapper taskMapper;
-//    private DbService deService;
+    //    private DbService deService;
     private Map<Long, TaskDto> tasksMap = new HashMap<>();
     private static final AtomicLong IDS = new AtomicLong();
 
@@ -75,6 +75,4 @@ public class TaskController {
 
         tasksMap.put(taskId, taskDto);
     }
-
-
 }
