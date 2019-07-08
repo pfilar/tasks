@@ -1,12 +1,8 @@
 package com.crud.tasks.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import javax.persistence.*;
 
-//@Getter
-//@AllArgsConstructor
-//@NoArgsConstructor
+@Entity(name = "tasks")
 public class Task {
     private Long id;
     private String title;
@@ -21,24 +17,28 @@ public class Task {
         this.content = content;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
+    }
+
+    @Column(name = "name")
+    public String getTitle() {
+        return title;
+    }
+
+    @Column(name = "description")
+    public String getContent() {
+        return content;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getContent() {
-        return content;
     }
 
     public void setContent(String content) {

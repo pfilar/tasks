@@ -1,78 +1,53 @@
 package com.crud.tasks.controller;
 
 import com.crud.tasks.domain.TaskDto;
+import com.crud.tasks.mapper.TaskMapper;
+import com.crud.tasks.service.DbService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/v1/task")
 public class TaskController {
-    private static final Logger LOGGER = Logger.getLogger(TaskController.class.getName());
 
-    //    private TaskMapper taskMapper;
-    //    private DbService deService;
-    private Map<Long, TaskDto> tasksMap = new HashMap<>();
-    private static final AtomicLong IDS = new AtomicLong();
+    @Autowired
+    private DbService service;
+    @Autowired
+    private TaskMapper taskMapper;
 
-    public TaskController() {
-        Long firstId = IDS.getAndIncrement();
-        tasksMap.put(firstId, new TaskDto(firstId, "first task", "some content"));
-        Long secondId = IDS.getAndIncrement();
-        tasksMap.put(secondId, new TaskDto(secondId, "secind task", "some more content"));
+    @RequestMapping(method = RequestMethod.GET, value = "/getTasks")
+    public List<TaskDto> getTasks() {
+        return taskMapper.mapToTaskDtoList(service.getAllTasks());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/tasks")
-    //@GetMapping("/tasksMap")
-    //@ResponseBody
-    public List<TaskDto> getTasksMap() {
-        LOGGER.info("Returning all tasksMap: " + tasksMap);
-        return new ArrayList<>(tasksMap.values());
-    }
-
-    //@GetMapping("/tasksMap/{taskId}")
-    //@ResponseBody
-    //public TaskDto getTask(@PathVariable("taskId") Long taskId) {
-    @RequestMapping(method = RequestMethod.GET, value = "/tasks/{taskId}")
-    @ResponseBody
-    public TaskDto getTask(@PathVariable("taskId") Long taskId) {
-        ///TaskDto taskDto = new TaskDto(1L, "test title", "test_content");
+    @RequestMapping(method = RequestMethod.GET, value = "/getTask")
+    //@RequestMapping(method = RequestMethod.GET, value = "/getTask/{taskId}")
+    public TaskDto getTask(@RequestParam Long taskId) throws TaskNotFoundException {
+        //public TaskDto getTask(@PathVariable Long taskId) throws TaskNotFoundException {
+        return taskMapper.mapToTaskDto(service.getTask(taskId).orElseThrow(TaskNotFoundException::new));
         //return new TaskDto(1L, "test title", "test_content");
-        TaskDto taskDto = tasksMap.get(taskId);
-        LOGGER.info("Getting single task: " + taskDto);
-
-        return taskDto;
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "/tasks/{taskId}")
-    public void deleteTask(@PathVariable("taskId") Long taskId) {
-        LOGGER.info("Removing single task: " + taskId);
-        tasksMap.remove(taskId);
+    // endpoint ustawiony na "getTask/{taskId}"
 
+    //    @RequestMapping(method = RequestMethod.DELETE, value = "deleteTask/{taskId}")
+//    public void deleteTask(@PathVariable Long taskId) {
+    @RequestMapping(method = RequestMethod.DELETE, value = "/deleteTask")
+    public void deleteTask(@RequestParam Long taskId) {
+        service.deleteTask(taskId);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/tasks")
+    @RequestMapping(method = RequestMethod.PUT, value = "updateTask")
     public TaskDto updateTask(@RequestBody TaskDto taskDto) {
-        Long taskId = taskDto.getId();
-        LOGGER.info("Updating single task: " + taskDto);
-
-        tasksMap.put(taskId, taskDto);
-
-        return taskDto;
+        return taskMapper.mapToTaskDto(service.saveTask(taskMapper.mapToTask(taskDto)));
+        //return new TaskDto(1L, "test title", "test_content");
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/tasks", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, value = "createTask", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createTask(@RequestBody TaskDto taskDto) {
-        Long taskId = IDS.getAndIncrement();
-        taskDto.setId(taskId);
-        LOGGER.info("Creating single task: " + taskDto);
-
-        tasksMap.put(taskId, taskDto);
+        service.saveTask(taskMapper.mapToTask(taskDto));
     }
 }
