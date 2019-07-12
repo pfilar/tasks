@@ -14,6 +14,7 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'war'
 
 group = 'com.crud'
 version = '0.0.1-SNAPSHOT'
@@ -33,4 +34,5 @@ dependencies {
 	testCompile(group: 'org.mockito', name: 'mockito-all', version: '1.10.19')
 
 	compile (group: 'org.projectlombok', name: 'lombok')
+	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 }
