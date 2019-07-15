@@ -28,11 +28,11 @@ dependencies {
 	compile ('org.springframework.boot:spring-boot-starter-web')
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	implementation('mysql:mysql-connector-java')
-
+	//compile('org.postgresql:postgresql
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile(group: 'org.mockito', name: 'mockito-all', version: '1.10.19')
 
 	compile (group: 'org.projectlombok', name: 'lombok')
-	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+	//providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 }
