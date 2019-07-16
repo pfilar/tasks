@@ -14,7 +14,6 @@ public class TaskMapper {
                 taskDto.getId(),
                 taskDto.getTitle(),
                 taskDto.getContent());
-
     }
 
     public TaskDto mapToTaskDto(final Task task) {
@@ -22,7 +21,6 @@ public class TaskMapper {
                 task.getId(),
                 task.getTitle(),
                 task.getContent());
-
     }
 
     public List<TaskDto> mapToTaskDtoList(final List<Task> taskList) {
