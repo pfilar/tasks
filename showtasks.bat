@@ -1,20 +1,22 @@
 call runcrud.bat
-if "%ERRORLEVEL%" == "0" goto runbrowser
+if "%ERRORLEVEL%" == "0" goto browser
 echo.
-echo Error with runcrud.bat - breaking work.
+echo There were errors, can not running script.
 goto fail
 
-:runbrowser
-explorer "http://localhost:8080/crud/v1/task/getTasks"
+:browser
+
+start chrome "http://localhost:8080/crud/v1/task/getTasks"
+timeout 30
 if "%ERRORLEVEL%" == "0" goto end
 echo.
-echo Browser error.
+echo There were errors, can not running browser.
 goto fail
 
 :fail
 echo.
-echo There were errors.
+echo There were errors
 
 :end
 echo.
-echo Work is finished.
+echo Work is finished
