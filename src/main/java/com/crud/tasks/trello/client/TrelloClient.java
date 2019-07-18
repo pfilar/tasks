@@ -44,7 +44,9 @@ public class TrelloClient {
         //task 22.2
         Optional<TrelloBoardDto[]> boardsResponse =
                 Optional.ofNullable(restTemplate.getForObject(url, TrelloBoardDto[].class));
-            return Arrays.asList(boardsResponse.get());
+                return Arrays.asList(boardsResponse.orElse(new TrelloBoardDto[0]));
+                //return Arrays.asList(boardsResponse.get());  // zle
+
     }
 
     private URI getTrelloBoardsUri() {
@@ -52,6 +54,7 @@ public class TrelloClient {
                 //.queryParam("username", trelloUsername)
                 .queryParam("key", trelloAppKey)
                 .queryParam("token", trelloToken)
-                .queryParam("fields", "name,id").build().encode().toUri();
+                .queryParam("fields", "name,id")
+                .queryParam("lists", "all").build().encode().toUri();
     }
 }
