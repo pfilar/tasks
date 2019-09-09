@@ -19,34 +19,34 @@ public class TrelloController {
     @Autowired
     private TrelloClient trelloClient;
 
-    // Wewnątrz klasy TrelloController występuje iteracja po zwróconych tablicach.
-    // Rozbuduj iterację o filtrowanie, pozwalając wyświetlić tylko i wyłącznie takie tablice, które posiadają pola id i name
-    // oraz których nazwa zawiera w sobie słowo Kodilla.
+    // 22.4
 
     @RequestMapping(method = RequestMethod.GET, value = "getTrelloBoards")
-    public void getTrelloBoards() {
-
-        List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
+    public List<TrelloBoardDto> getTrelloBoards() {
+        return trelloClient.getTrelloBoards();
+    }
+        //List<TrelloBoardDto> trelloBoards = trelloClient.getTrelloBoards();
         //module 22
         //trelloBoards.forEach(trelloBoardDto -> System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName()));
         //Task22.2
 
-        trelloBoards.forEach(trelloBoardDto -> {
-
-            System.out.println(trelloBoardDto.getName() + " - " + trelloBoardDto.getId());
-
-            System.out.println("This board contains lists: ");
-
-            trelloBoardDto.getLists().forEach(trelloList ->
-                    System.out.println(trelloList.getName() + " - " + trelloList.getId() + " - " + trelloList.isClosed()));
-
-        });
-
-        trelloBoards.stream()
-                .filter(board -> !board.getId().isEmpty()&&!board.getName().isEmpty())
-                .filter(board -> board.getName().contains("Kodilla"))
-                .forEach(trelloBoardDto -> System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName()));
-    }
+        //module 22.3
+//        trelloBoards.forEach(trelloBoardDto -> {
+//
+//            System.out.println(trelloBoardDto.getName() + " - " + trelloBoardDto.getId());
+//
+//            System.out.println("This board contains lists: ");
+//
+//            trelloBoardDto.getLists().forEach(trelloList ->
+//                    System.out.println(trelloList.getName() + " - " + trelloList.getId() + " - " + trelloList.isClosed()));
+//
+//        });
+        //Task 22.2
+//        trelloBoards.stream()
+//                .filter(board -> !board.getId().isEmpty()&&!board.getName().isEmpty())
+//                .filter(board -> board.getName().contains("Kodilla"))
+//                .forEach(trelloBoardDto -> System.out.println(trelloBoardDto.getId() + " " + trelloBoardDto.getName()));
+//    }
 
     @RequestMapping(method = RequestMethod.POST, value = "createTrelloCard")
     public CreatedTrelloCard createdTrelloCard(@RequestBody TrelloCardDto trelloCardDto) {

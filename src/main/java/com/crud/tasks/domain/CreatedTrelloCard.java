@@ -21,11 +21,18 @@ public class CreatedTrelloCard {
     public CreatedTrelloCard() {
     }
 
-    public CreatedTrelloCard(String id, String name, String shortUrl, BadgesDto badges) {
+//    public CreatedTrelloCard(String id, String name, String shortUrl, BadgesDto badges) {
+//        this.id = id;
+//        this.name = name;
+//        this.shortUrl = shortUrl;
+//        this.badges = badges;
+//    }
+
+
+    public CreatedTrelloCard(String id, String name, String shortUrl) {
         this.id = id;
         this.name = name;
         this.shortUrl = shortUrl;
-        this.badges = badges;
     }
 
     public String getId() {
