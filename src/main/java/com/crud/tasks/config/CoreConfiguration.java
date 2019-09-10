@@ -23,6 +23,7 @@ public class CoreConfiguration implements WebMvcConfigurer {
     @Bean public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
+                //.apis(RequestHandlerSelectors.any())  // pakiet bez ograniczenia
                 .apis(RequestHandlerSelectors.basePackage("com.crud.tasks.controller"))  // pakiet do ograniczenia
                 .paths(PathSelectors.any())
                 .build();
