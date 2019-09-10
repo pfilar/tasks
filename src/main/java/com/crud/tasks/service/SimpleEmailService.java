@@ -33,6 +33,12 @@ public class SimpleEmailService {
         mailMessage.setTo(mail.getMailTo());
         mailMessage.setSubject(mail.getSubject());
         mailMessage.setText(mail.getMessage());
+//        if ( ! mail.getToCc().isEmpty()) {          // https://stackoverflow.com/questions/3598770/check-whether-a-string-is-not-null-and-not-empty
+//            mailMessage.setCc(mail.getToCc());
+//        }
+        if(mail.getToCc() != null && !mail.getToCc().isEmpty()) {
+            mailMessage.setCc(mail.getToCc());
+        }
         return mailMessage;
     }
 }

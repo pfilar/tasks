@@ -1,25 +1,19 @@
 package com.crud.tasks.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
+@Getter
+@AllArgsConstructor
+@RequiredArgsConstructor    // https://projectlombok.org/features/constructor
 public class Mail {
+    @NonNull
     private String mailTo;
+    @NonNull
     private String subject;
+    @NonNull
     private String message;
-
-    public Mail(String mailTo, String subject, String message) {
-        this.mailTo = mailTo;
-        this.subject = subject;
-        this.message = message;
-    }
-
-    public String getMailTo() {
-        return mailTo;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public String getMessage() {
-        return message;
-    }
+    private String toCc;
 }
