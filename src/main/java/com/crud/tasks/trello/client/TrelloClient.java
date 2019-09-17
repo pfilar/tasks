@@ -63,7 +63,7 @@ public class TrelloClient {
                 .queryParam("key", trelloConfig.getTrelloAppKey())
                 .queryParam("token", trelloConfig.getTrelloToken())
                 .queryParam("fields", "name,id")
-                .queryParam("list", "all").build().encode().toUri();
+                .queryParam("lists", "all").build().encode().toUri();
     }
 
 //    @Override
