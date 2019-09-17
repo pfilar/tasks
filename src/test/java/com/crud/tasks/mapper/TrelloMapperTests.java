@@ -30,8 +30,8 @@ public class TrelloMapperTests {
         trelloListOfDto.add(trelloListDtoFirst);
         trelloListOfDto.add(trelloListDtoSecond);
 
-        TrelloBoardDto trelloBoardDto1 = new TrelloBoardDto("id_board_1", "name_board_1", trelloListOfDto);
-        TrelloBoardDto trelloBoardDto2 = new TrelloBoardDto("id_board_2", "name_board_2", trelloListOfDto);
+        TrelloBoardDto trelloBoardDto1 = new TrelloBoardDto("name_board_1", "id_board_1", trelloListOfDto);
+        TrelloBoardDto trelloBoardDto2 = new TrelloBoardDto("name_board_2", "id_board_2",trelloListOfDto);
         List<TrelloBoardDto> trelloBoardDtosList = new ArrayList<>();
         trelloBoardDtosList.add(trelloBoardDto1);
         trelloBoardDtosList.add(trelloBoardDto2);
