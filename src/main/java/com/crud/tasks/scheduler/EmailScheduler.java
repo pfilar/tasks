@@ -25,12 +25,11 @@ public class EmailScheduler {
     //@Scheduled(fixedDelay = 10000)
     public void sendInformationEmail() {
         long size = taskRepository.count();
+        String task_s = size == 1 ? " task" : " tasks";     // https://www.baeldung.com/java-ternary-operator
         simpleEmailService.send(new Mail(
                 adminConfig.getAdminMail(),
                 SUBJEC,
-                "Currently in database you got: " + size + " tasks")
+                "Currently in database you got: " + size + task_s)
         );
     }
-
-
 }

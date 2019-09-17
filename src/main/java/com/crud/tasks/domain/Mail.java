@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @AllArgsConstructor
 @RequiredArgsConstructor    // https://projectlombok.org/features/constructor
+
 public class Mail {
     @NonNull
     private String mailTo;

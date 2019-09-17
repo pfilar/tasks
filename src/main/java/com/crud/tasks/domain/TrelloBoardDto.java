@@ -4,47 +4,26 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import java.util.List;
 
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@RequiredArgsConstructor
 
-//@Getter
-//@AllArgsConstructor
-//@NoArgsConstructor
 public class TrelloBoardDto {
 
+    @NonNull
     @JsonProperty("name")
     private String name;
 
+    @NonNull
     @JsonProperty("id")
     private String id;
 
     @JsonProperty("lists")
     private List<TrelloListDto> lists;
 
-    public TrelloBoardDto() {
-    }
-
-    public TrelloBoardDto(String name, String id) {
-        this.name = name;
-        this.id = id;
-    }
-
-    public TrelloBoardDto(String name, String id, List<TrelloListDto> lists) {
-        this.name = name;
-        this.id = id;
-        this.lists = lists;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public List<TrelloListDto> getLists() {
-        return lists;
-    }
 }
