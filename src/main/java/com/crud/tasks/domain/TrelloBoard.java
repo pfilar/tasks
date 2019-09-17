@@ -9,8 +9,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TrelloBoard {
-    private String name;
     private String id;
+    private String name;
     private List<TrelloList> lists;
 
 }
