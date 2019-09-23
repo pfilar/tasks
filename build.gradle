@@ -38,8 +38,7 @@ dependencies {
 	annotationProcessor("org.projectlombok:lombok:1.18.2")
 
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
-	testImplementation(group: 'org.mockito', name: 'mockito-all', version: '1.10.19')
-
-
+	//testImplementation(group: 'org.mockito', name: 'mockito-core', version: '2.15.0')
+	
 //	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
 }
